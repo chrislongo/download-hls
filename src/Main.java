@@ -19,15 +19,17 @@ public class Main
     private static String IV = "214502ba0fa3b3911603d80a06514f89";
     private static String KEY = "b3d3199b25c018bfcb1085e304b69cb8";
 
-    private static Cipher cipher;
+    private Cipher cipher;
 
     public static void main(String[] args)
     {
-        byte[] iv = unpack(IV);
-        byte[] key = unpack(KEY);
+        Main main = new Main();
+
+        byte[] iv = main.unpack(IV);
+        byte[] key = main.unpack(KEY);
         SecretKey secretKey = new SecretKeySpec(key, "AES");
 
-        initCrypto(iv, secretKey);
+        main.initCrypto(iv, secretKey);
 
         try
         {
@@ -37,7 +39,7 @@ public class Main
             FileOutputStream out = 
                     new FileOutputStream("/Users/clongo/src/java/DecryptHLS/data/out.ts");
 
-            decrypt(in, out);
+            main.decrypt(in, out);
         }
         catch (Exception e)
         {
@@ -45,7 +47,7 @@ public class Main
         }
     }
 
-    private static void initCrypto(byte[] iv, SecretKey secretKey)
+    private void initCrypto(byte[] iv, SecretKey secretKey)
     {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());    
         AlgorithmParameterSpec spec = new IvParameterSpec(iv);
@@ -61,7 +63,7 @@ public class Main
         }
     }
 
-    private static void decrypt(InputStream in, OutputStream out) throws IOException
+    private void decrypt(InputStream in, OutputStream out) throws IOException
     {
         InputStream cis = new CipherInputStream(in, cipher);
 	    byte[] buffer = new byte[1024];
@@ -76,7 +78,7 @@ public class Main
         out.close();
     }
 
-    private static byte[] unpack(String hexString)
+    private byte[] unpack(String hexString)
     {
         byte[] array = new byte[16];
 
