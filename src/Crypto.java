@@ -50,7 +50,7 @@ public class Crypto
         return arrayToString(iv);
     }
 
-    public void updateKeyString(String keyString)
+    public void updateKeyString(String keyString) throws CryptoException
     {
         String regex =
             "METHOD=([A-Z0-9-]+)" +
@@ -74,7 +74,7 @@ public class Crypto
             }
             catch (Exception e)
             {
-                e.printStackTrace();
+               throw new CryptoException(e);
             }
 
             String ivString = matcher.group(8);
@@ -105,7 +105,7 @@ public class Crypto
         in.close();
     }
 
-    private void init()
+    private void init() throws CryptoException
     {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         AlgorithmParameterSpec spec = new IvParameterSpec(iv);
@@ -118,7 +118,7 @@ public class Crypto
         }
         catch (Exception e)
         {
-            e.printStackTrace();
+           throw new CryptoException(e);
         }
     }
 

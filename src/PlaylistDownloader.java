@@ -30,14 +30,17 @@ public class PlaylistDownloader
 
         while ((line = reader.readLine()) != null)
         {
+            line = line.trim();
+
             if (line.startsWith(EXT_X_KEY))
             {
                 crypto.updateKeyString(line);
 
-                System.out.println(String.format("Current Key/IV: %s/%s", 
-                    crypto.getCurrentKey(), crypto.getCurrentIV()));
+                System.out.println(String.format("Current Key/IV: %s/%s",
+                    crypto.getCurrentKey(),
+                    crypto.getCurrentIV()));
             }
-            else if (!line.startsWith("#"))
+            else if (line.length() > 0 && !line.startsWith("#"))
             {
                 URL segmentUrl;
 

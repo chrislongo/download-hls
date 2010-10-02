@@ -2,14 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="8328fbd4-e3c2-4d74-a75e-74b673c4042f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/PlaylistDownloader.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/PlaylistDownloader.java" afterPath="$PROJECT_DIR$/src/PlaylistDownloader.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/Crypto.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/KeyInfo.java" afterPath="" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/src/CryptoException.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Main.java" afterPath="$PROJECT_DIR$/src/Main.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/TestParser.java" afterPath="$PROJECT_DIR$/test/TestParser.java" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/M3u8Parser.java" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/src/TsDownloader.java" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/Crypto.java" afterPath="$PROJECT_DIR$/src/Crypto.java" />
     </list>
     <ignored path=".idea/workspace.xml" />
     <ignored path="DecryptHLS.iws" />
@@ -69,19 +67,19 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
+      <file leaf-file-name="Main.java" pinned="false" current="true" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="45" column="41" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.0">
+            <state line="51" column="57" selection-start="1287" selection-end="1287" vertical-scroll-proportion="0.5949367">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="TestParser.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="TestParser.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/test/TestParser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="10" column="1" selection-start="144" selection-end="144" vertical-scroll-proportion="0.088607594">
+            <state line="18" column="0" selection-start="418" selection-end="418" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -90,7 +88,7 @@
       <file leaf-file-name="PlaylistDownloader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/PlaylistDownloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="32" column="42" selection-start="774" selection-end="774" vertical-scroll-proportion="0.0">
+            <state line="42" column="10" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -101,10 +99,19 @@
       <file leaf-file-name="Crypto.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/Crypto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="39" column="29" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
+            <state line="76" column="44" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0">
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="CryptoException.java" pinned="false" current="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/CryptoException.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state line="10" column="17" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -126,10 +133,11 @@
         <option value="$PROJECT_DIR$/src/M3u8Parser.java" />
         <option value="$PROJECT_DIR$/src/KeyInfo.java" />
         <option value="$PROJECT_DIR$/src/TsDownloader.java" />
-        <option value="$PROJECT_DIR$/src/Main.java" />
+        <option value="$PROJECT_DIR$/test/TestParser.java" />
+        <option value="$PROJECT_DIR$/src/CryptoException.java" />
         <option value="$PROJECT_DIR$/src/Crypto.java" />
         <option value="$PROJECT_DIR$/src/PlaylistDownloader.java" />
-        <option value="$PROJECT_DIR$/test/TestParser.java" />
+        <option value="$PROJECT_DIR$/src/Main.java" />
       </list>
     </option>
   </component>
@@ -230,18 +238,25 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
     <property name="project.structure.last.edited" value="SDKs" />
     <property name="GoToFile.includeJavaFiles" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
     <property name="project.structure.proportion" value="0.15" />
     <property name="options.splitter.main.proportions" value="0.3" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
     <property name="options.lastSelected" value="fileTemplates" />
     <property name="MemberChooser.sorted" value="false" />
     <property name="recentsLimit" value="5" />
+    <property name="GenerateAntBuildDialog.inclineRuntiemClasspath" value="false" />
+    <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="MemberChooser.copyJavadoc" value="false" />
+    <property name="GenerateAntBuildDialog.enableUiFormCompile" value="false" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
+    <property name="GenerateAntBuildDialog.backupFiles" value="true" />
     <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
@@ -505,16 +520,23 @@
         <state line="2669" column="37" selection-start="91164" selection-end="91164" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/Main.java">
+    <entry file="file://$PROJECT_DIR$/test/TestParser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="45" column="41" selection-start="1185" selection-end="1185" vertical-scroll-proportion="0.0">
+        <state line="18" column="0" selection-start="418" selection-end="418" vertical-scroll-proportion="0.0">
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/CryptoException.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="10" column="17" selection-start="257" selection-end="257" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/Crypto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="39" column="29" selection-start="907" selection-end="907" vertical-scroll-proportion="0.0">
+        <state line="76" column="44" selection-start="1827" selection-end="1827" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
@@ -523,16 +545,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/src/PlaylistDownloader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="32" column="42" selection-start="774" selection-end="774" vertical-scroll-proportion="0.0">
+        <state line="42" column="10" selection-start="1057" selection-end="1057" vertical-scroll-proportion="0.0">
           <folding>
             <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/TestParser.java">
+    <entry file="file://$PROJECT_DIR$/src/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="1" selection-start="144" selection-end="144" vertical-scroll-proportion="0.088607594">
+        <state line="51" column="57" selection-start="1287" selection-end="1287" vertical-scroll-proportion="0.5949367">
           <folding />
         </state>
       </provider>

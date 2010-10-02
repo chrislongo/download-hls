@@ -21,43 +21,42 @@ public class Main
 {
     public static void main(String[] args)
     {
-        if(args.length < 2)
+        if (args.length < 2)
         {
             System.out.println("Args: playlistUrl outFile");
+            System.exit(1);
         }
-        else
+
+        try
         {
-            try
+            String playlistUrl = args[0];
+            String outFile = args[1];
+
+            File file = new File(outFile);
+
+            if (file.exists())
             {
-                String playlistUrl = args[0];
-                String outFile = args[1];
+                System.out.print("Output file exists.  Overwrite [y/n]? ");
 
-                File file = new File(outFile);
+                int ch = System.in.read();
 
-                if(file.exists())
+                if (!(ch == 'y' || ch == 'Y'))
                 {
-                    System.out.print("Input file exists.  Overwrite [y/n]? ");
+                    System.exit(0);
+                }
 
-                    int ch = System.in.read();
-
-                    if(!(ch == 'y' || ch == 'Y'))
-                    {
-                        System.exit(0);
-                    }
-
-                    file.delete();
-               }
-
-                PlaylistDownloader downloader =
-                    new PlaylistDownloader(playlistUrl);
-
-                downloader.download(outFile);
+                file.delete();
             }
-            catch (Exception e)
-            {
-                e.printStackTrace();
-            }
+
+            PlaylistDownloader downloader =
+                new PlaylistDownloader(playlistUrl);
+
+            downloader.download(outFile);
         }
-
+        catch (Exception e)
+        {
+            e.printStackTrace();
+            System.exit(1);
+        }
     }
 }
