@@ -36,7 +36,7 @@ public class PlaylistDownloader
             {
                 crypto.updateKeyString(line);
 
-                System.out.println(String.format("Current Key/IV: %s/%s",
+                System.out.println(String.format("Current Key / IV: %s / %s",
                     crypto.getCurrentKey(),
                     crypto.getCurrentIV()));
             }

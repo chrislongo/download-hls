@@ -7,21 +7,21 @@ public class CryptoException extends RuntimeException
 {
     public CryptoException()
     {
-        super();    //To change body of overridden methods use File | Settings | File Templates.
+        super();
     }
 
     public CryptoException(String message)
     {
-        super(message);    //To change body of overridden methods use File | Settings | File Templates.
+        super(message);
     }
 
     public CryptoException(String message, Throwable cause)
     {
-        super(message, cause);    //To change body of overridden methods use File | Settings | File Templates.
+        super(message, cause);
     }
 
     public CryptoException(Throwable cause)
     {
-        super(cause);    //To change body of overridden methods use File | Settings | File Templates.
+        super(cause);   
     }
 }
