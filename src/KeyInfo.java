@@ -24,7 +24,7 @@ public class KeyInfo
     {
         String regex =
             "METHOD=([A-Z0-9-]+)" +
-            ",URI=\"(https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_\\.]*(\\?\\S+)?)?)?)\"" +
+            ",URI=\"(https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_~\\.]*(\\?\\S+)?)?)?)\"" +
             ",IV=0x([0-9a-f]+)";
 
         Pattern pattern = Pattern.compile(regex);
@@ -62,6 +62,11 @@ public class KeyInfo
     public byte[] getIV()
     {
         return iv;
+    }
+
+    public byte[] getKey()
+    {
+        return key;
     }
 
     private void fetchKey() throws IOException
@@ -102,14 +107,27 @@ public class KeyInfo
         return array;
     }
 
+    private String byteArrayToString(byte[] array)
+    {
+        StringBuffer sb = new StringBuffer();
+
+        for (int i = 0; i < array.length; i++)
+        {
+            byte b = array[i];
+            sb.append(String.format("%02x", b));
+        }
+
+        return sb.toString();
+    }
+
     @Override
     public String toString()
     {
         return "KeyInfo{" +
                 "method='" + method + '\'' +
                 ", keyUrl=" + keyUrl +
-                ", iv=" + iv +
-                ", key=" + key +
+                ", iv=" + byteArrayToString(iv) +
+                ", key=" + byteArrayToString(key) +
                 '}';
     }
 }

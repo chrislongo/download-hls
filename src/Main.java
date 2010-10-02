@@ -1,10 +1,12 @@
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
+import javax.crypto.CipherOutputStream;
 import javax.crypto.SecretKey;
 import javax.crypto.spec.IvParameterSpec;
 import javax.crypto.spec.SecretKeySpec;
 import java.io.*;
 import java.math.BigInteger;
+import java.net.URL;
 import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
 
@@ -19,6 +21,7 @@ public class Main
     private static String IV = "214502ba0fa3b3911603d80a06514f89";
     private static String KEY = "b3d3199b25c018bfcb1085e304b69cb8";
 
+    private Cipher decipher;
     private Cipher cipher;
 
     public static void main(String[] args)
@@ -27,18 +30,22 @@ public class Main
 
         byte[] iv = main.unpack(IV);
         byte[] key = main.unpack(KEY);
+
         SecretKey secretKey = new SecretKeySpec(key, "AES");
 
         main.initCrypto(iv, secretKey);
 
         try
         {
-            FileInputStream in =
-                    new FileInputStream("/Users/clongo/src/java/DecryptHLS/data/fileSequence0.ts");
+            URL url = new URL("http://chrislongo.net/images/out.cipher");
 
-            FileOutputStream out = 
-                    new FileOutputStream("/Users/clongo/src/java/DecryptHLS/data/out.ts");
+            InputStream in =  url.openStream();
+                   // new FileInputStream("/Users/chris/Downloads/test/out.cipher");
 
+            FileOutputStream out =
+                    new FileOutputStream("/Users/chris/Downloads/test/out.jpg");
+
+            //main.encrypt(in, out);
             main.decrypt(in, out);
         }
         catch (Exception e)
@@ -54,8 +61,11 @@ public class Main
 
         try
         {
+            decipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
+            decipher.init(Cipher.DECRYPT_MODE, secretKey, spec);
+
             cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, spec);
+            cipher.init(Cipher.ENCRYPT_MODE, secretKey, spec);
         }
         catch(Exception e)
         {
@@ -63,9 +73,26 @@ public class Main
         }
     }
 
+    private void encrypt(InputStream in, OutputStream out) throws IOException
+    {
+        OutputStream os = new CipherOutputStream(out, cipher);
+
+        byte[] buffer = new byte[1024];
+
+        int read;
+
+        while ((read = in.read(buffer)) >= 0)
+        {
+            os.write(buffer, 0, read);
+        }
+
+        os.close();
+        in.close();
+    }
+
     private void decrypt(InputStream in, OutputStream out) throws IOException
     {
-        InputStream cis = new CipherInputStream(in, cipher);
+        InputStream cis = new CipherInputStream(in, decipher);
 	    byte[] buffer = new byte[1024];
 
         int read;
@@ -75,6 +102,7 @@ public class Main
             out.write(buffer, 0, read);
         }
 
+        cis.close();
         out.close();
     }
 

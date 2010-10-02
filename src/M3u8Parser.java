@@ -1,6 +1,9 @@
 import java.io.*;
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -20,6 +23,7 @@ public class M3u8Parser
                                            
     public M3u8Parser(URL url) throws IOException
     {
+        this.segments = new ArrayList<String>();
         this.url = url;
         parse();
     }
@@ -61,6 +65,19 @@ public class M3u8Parser
             {
                 keyInfo = new KeyInfo(line);
                 System.out.println("keyInfo = " + keyInfo);
+            }
+            else if(!line.startsWith("#"))
+            {
+                if(!line.startsWith("http"))
+                {
+                    String urlString = url.toString();
+                    int index = urlString.lastIndexOf('/');
+                    String baseUrl = urlString.substring(0, ++index);
+
+                    line = baseUrl + line;
+                }
+
+                segments.add(line);
             }
         }
     }
