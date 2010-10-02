@@ -1,15 +1,6 @@
-import javax.crypto.Cipher;
-import javax.crypto.CipherInputStream;
-import javax.crypto.CipherOutputStream;
-import javax.crypto.SecretKey;
-import javax.crypto.spec.IvParameterSpec;
-import javax.crypto.spec.SecretKeySpec;
+package net.chrislongo.hls;
+
 import java.io.*;
-import java.math.BigInteger;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.security.Security;
-import java.security.spec.AlgorithmParameterSpec;
 
 /**
  * Created by IntelliJ IDEA.

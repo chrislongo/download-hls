@@ -1,3 +1,5 @@
+package net.chrislongo.hls;
+
 /**
  * User: chris
  * Date: Oct 2, 2010

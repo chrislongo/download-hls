@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project name="DecryptHLS" default="compile" basedir=".">
+    <property name="src.dir" value="src" />
+    <property name="lib.dir" value="lib" />
+    <property name="out.dir" value="out" />
+    <property name="classes.dir" value="${out.dir}/classes" />
+    <property name="dist.dir" value="${out.dir}/dist" />
+    <property name="jar.name" value="decrypt-hls.jar" />
+
+    <path id="lib.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="**/*.jar" />
+        </fileset>
+    </path>
+
+    <target name="init">
+        <tstamp />
+        <mkdir dir="${classes.dir}" />
+        <mkdir dir="${dist.dir}" />
+    </target>
+
+    <target name="compile" depends="init" description="Compiles the project.">
+        <javac srcdir="${src.dir}" destdir="${classes.dir}">
+            <classpath refid="lib.classpath" />
+        </javac>
+    </target>
+
+    <target name="distribute" depends="compile" description="Creates distribution.">
+        <jar destfile="${dist.dir}/${jar.name}">
+            <fileset dir="${classes.dir}" />
+            <manifest>
+                <attribute name="Main-Class" value="net.chrislongo.hls.Main" />
+                <attribute name="Class-Path" value="lib/bcprov-ext-jdk16-145.jar" />
+            </manifest>
+        </jar>
+        <copy todir="${dist.dir}">
+            <fileset dir="${basedir}">
+                <include name="${lib.dir}/bcprov-ext-jdk16-145.jar" />
+            </fileset>
+        </copy>
+    </target>
+
+    <target name="clean" description="Cleans the intermediate files.">
+        <delete dir="${out.dir}" />
+    </target>
+</project>

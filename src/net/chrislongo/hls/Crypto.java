@@ -1,3 +1,5 @@
+package net.chrislongo.hls;
+
 import javax.crypto.Cipher;
 import javax.crypto.CipherInputStream;
 import javax.crypto.SecretKey;
@@ -158,7 +160,7 @@ public class Crypto
     @Override
     public String toString()
     {
-        return "Crypto{" +
+        return "net.chrislongo.hls.Crypto{" +
             "cipher=" + cipher +
             ", keyUrl='" + keyUrl + '\'' +
             ", key=" + arrayToString(key) +
