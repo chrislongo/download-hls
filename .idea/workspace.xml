@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" readonly="true" id="8328fbd4-e3c2-4d74-a75e-74b673c4042f" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/test/TestParser.java" afterPath="$PROJECT_DIR$/test/TestParser.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/build.xml" afterPath="$PROJECT_DIR$/build.xml" />
+      <change type="MOVED" beforePath="$PROJECT_DIR$/test/TestParser.java" afterPath="$PROJECT_DIR$/test/TestDownload.java" />
     </list>
     <ignored path="DecryptHLS.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -63,13 +63,11 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TestParser.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/TestParser.java">
+      <file leaf-file-name="TestDownload.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/test/TestDownload.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="18" column="29" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
-              <folding>
-                <element signature="imports" expanded="true" />
-              </folding>
+            <state line="10" column="16" selection-start="181" selection-end="181" vertical-scroll-proportion="0.2278481">
+              <folding />
             </state>
           </provider>
         </entry>
@@ -77,7 +75,7 @@
       <file leaf-file-name="build.xml" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/build.xml">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="-0.0">
+            <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -110,10 +108,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlaylistDownloader.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PlaylistDownloader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="11" column="13" selection-start="185" selection-end="185" vertical-scroll-proportion="-1.6582278">
+            <state line="11" column="13" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -142,6 +140,7 @@
         <option value="$PROJECT_DIR$/src/CryptoException.java" />
         <option value="$PROJECT_DIR$/src/PlaylistDownloader.java" />
         <option value="$PROJECT_DIR$/test/TestParser.java" />
+        <option value="$PROJECT_DIR$/test/TestDownload.java" />
       </list>
     </option>
   </component>
@@ -188,6 +187,9 @@
       <sortByType />
     </navigator>
     <panes>
+      <pane id="Favorites" />
+      <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -240,9 +242,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="Favorites" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -264,11 +263,11 @@
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="MemberChooser.showClasses" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="options.searchVisible" value="true" />
-    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="GoToClass.includeLibraries" value="false" />
     <property name="dynamic.classpath" value="false" />
+    <property name="options.splitter.details.proportions" value="0.2" />
+    <property name="options.searchVisible" value="true" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="PHPUnitRunConfigurationType" factoryName="PHPUnit">
@@ -391,7 +390,7 @@
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="TestParser" />
+      <option name="MAIN_CLASS_NAME" value="TestDownload" />
       <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <option name="VM_PARAMETERS" value="" />
@@ -533,46 +532,36 @@
         <state line="1" column="7" selection-start="11" selection-end="11" vertical-scroll-proportion="0.025316456" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/test/TestParser.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="18" column="29" selection-start="431" selection-end="431" vertical-scroll-proportion="0.0">
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/build.xml">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="0" column="0" selection-start="0" selection-end="0" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="23" column="13" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="23" column="13" selection-start="605" selection-end="605" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/CryptoException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="7" column="13" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0">
+        <state line="7" column="13" selection-start="106" selection-end="106" vertical-scroll-proportion="0.0" />
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="11" column="13" selection-start="185" selection-end="185" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="10" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="10" column="13" selection-start="156" selection-end="156" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java">
+    <entry file="file://$PROJECT_DIR$/test/TestDownload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="11" column="13" selection-start="185" selection-end="185" vertical-scroll-proportion="-1.6582278">
+        <state line="10" column="16" selection-start="181" selection-end="181" vertical-scroll-proportion="0.2278481">
           <folding />
         </state>
       </provider>

@@ -6,7 +6,7 @@
     <property name="out.dir" value="out" />
     <property name="classes.dir" value="${out.dir}/classes" />
     <property name="dist.dir" value="${out.dir}/dist" />
-    <property name="jar.name" value="decrypt-hls.jar" />
+    <property name="jar.name" value="download-hls.jar" />
 
     <path id="lib.classpath">
         <fileset dir="${lib.dir}">

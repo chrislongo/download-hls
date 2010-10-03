@@ -8,7 +8,7 @@ import org.junit.Test;
  * Time: 4:44:55 PM
  */
 
-public class TestParser
+public class TestDownload
 {
     @Test
     public void download() throws Exception
