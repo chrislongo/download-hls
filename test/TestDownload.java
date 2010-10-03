@@ -16,6 +16,6 @@ public class TestDownload
         PlaylistDownloader downloader =
             new PlaylistDownloader("http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8");
 
-        downloader.download("out.ts");
-     }
+        downloader.download("out/out.ts");
+    }
 }
