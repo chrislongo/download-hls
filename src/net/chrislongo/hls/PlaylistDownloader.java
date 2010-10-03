@@ -38,9 +38,8 @@ public class PlaylistDownloader
             {
                 crypto.updateKeyString(line);
 
-                System.out.println(String.format("Current Key / IV: %s / %s",
-                    crypto.getCurrentKey(),
-                    crypto.getCurrentIV()));
+                System.out.printf("Current Key: %s\n", crypto.getCurrentKey());
+                System.out.printf("Current IV:  %s\n", crypto.getCurrentIV());
             }
             else if (line.length() > 0 && !line.startsWith("#"))
             {
@@ -76,7 +75,7 @@ public class PlaylistDownloader
 
         FileOutputStream out = new FileOutputStream(outFile, file.exists());
 
-        System.out.println("Downloading segment: " + segmentUrl);
+        System.out.printf("Downloading segment: %s\n", segmentUrl);
 
         int read;
 

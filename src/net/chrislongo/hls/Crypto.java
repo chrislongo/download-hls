@@ -13,8 +13,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.Security;
 import java.security.spec.AlgorithmParameterSpec;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
 
 /**
  * User: chris
@@ -39,7 +37,7 @@ public class Crypto
 
     public boolean hasKey()
     {
-        return (key != null);    
+        return (key != null);
     }
 
     public String getCurrentKey()
@@ -54,36 +52,27 @@ public class Crypto
 
     public void updateKeyString(String keyString) throws CryptoException
     {
-        String regex =
-            "METHOD=([A-Z0-9-]+)" +
-            ",URI=\"(https?://([-\\w\\.]+)+(:\\d+)?(/([\\w/_~\\.]*(\\?\\S+)?)?)?)\"" +
-            ",IV=0x([0-9a-f]+)";
+        String[] parts = keyString.split(",");
 
-        Pattern pattern = Pattern.compile(regex);
-        Matcher matcher = pattern.matcher(keyString);
+        String newKeyUrl = parts[1].split("\"")[1];
 
-        while(matcher.find())
+        String ivString = parts[2].substring(5);
+        iv = unpackHexString(ivString);
+
+        try
         {
-            try
+            if (!newKeyUrl.equals(keyUrl))
             {
-                String newKeyUrl = matcher.group(2);
-
-                if(!newKeyUrl.equals(keyUrl))
-                {
-                    keyUrl = newKeyUrl;
-                    fetchKey();
-                }
+                keyUrl = newKeyUrl;
+                fetchKey();
             }
-            catch (Exception e)
-            {
-               throw new CryptoException(e);
-            }
-
-            String ivString = matcher.group(8);
-            iv = unpack(ivString);
+        }
+        catch (IOException e)
+        {
+            throw new CryptoException(e);
         }
 
-        init();
+        initCipher();
     }
 
     private void fetchKey() throws IOException
@@ -96,9 +85,9 @@ public class Crypto
         int read = 0;
         int offset = 0;
 
-        while(offset < 16)
+        while (offset < 16)
         {
-            if((read = in.read(this.key, offset, key.length - offset)) == -1)
+            if ((read = in.read(this.key, offset, key.length - offset)) == -1)
                 break;
 
             offset += read;
@@ -107,7 +96,7 @@ public class Crypto
         in.close();
     }
 
-    private void init() throws CryptoException
+    private void initCipher() throws CryptoException
     {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
         AlgorithmParameterSpec spec = new IvParameterSpec(iv);
@@ -120,18 +109,18 @@ public class Crypto
         }
         catch (Exception e)
         {
-           throw new CryptoException(e);
+            throw new CryptoException(e);
         }
     }
 
-    private byte[] unpack(String hexString)
+    private byte[] unpackHexString(String hexString)
     {
         byte[] array = new byte[16];
 
         BigInteger bigInt = new BigInteger(hexString, 16);
         BigInteger andValue = new BigInteger("ff", 16);
 
-        for(int i = 0, index = 15; i < 16; i++, index--)
+        for (int i = 0, index = 15; i < 16; i++, index--)
         {
             BigInteger shift = bigInt.shiftRight(i * 8);
             shift = shift.and(andValue);
@@ -145,7 +134,7 @@ public class Crypto
     {
         StringBuilder sb = new StringBuilder();
 
-        if(array != null)
+        if (array != null)
         {
             for (int i = 0; i < array.length; i++)
             {
@@ -153,7 +142,7 @@ public class Crypto
                 sb.append(String.format("%02x", b));
             }
         }
-        
+
         return sb.toString();
     }
 

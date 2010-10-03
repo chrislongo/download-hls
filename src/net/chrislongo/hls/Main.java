@@ -27,7 +27,7 @@ public class Main
 
             if (file.exists())
             {
-                System.out.print("Output file exists.  Overwrite [y/n]? ");
+                System.out.printf("File '%s' already exists. Overwrite? [y/N] ", outFile);
 
                 int ch = System.in.read();
 
