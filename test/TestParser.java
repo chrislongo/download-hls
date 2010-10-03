@@ -1,4 +1,3 @@
-import net.chrislongo.hls.PlaylistDownloader;
 import org.junit.Test;
 
 /**
