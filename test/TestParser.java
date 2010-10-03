@@ -1,3 +1,4 @@
+import net.chrislongo.hls.PlaylistDownloader;
 import org.junit.Test;
 
 /**
@@ -15,6 +16,6 @@ public class TestParser
         PlaylistDownloader downloader =
             new PlaylistDownloader("http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8");
 
-        downloader.download("/Users/chris/Downloads/out.ts");
+        downloader.download("out.ts");
      }
 }
