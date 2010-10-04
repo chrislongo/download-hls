@@ -153,11 +153,8 @@ public class Crypto
 
         if (array != null)
         {
-            for (int i = 0; i < array.length; i++)
-            {
-                byte b = array[i];
+            for (byte b : array)
                 sb.append(String.format("%02x", b));
-            }
         }
 
         return sb.toString();
