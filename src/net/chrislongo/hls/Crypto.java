@@ -72,8 +72,8 @@ public class Crypto
         String[] parts = keyString.split(",");
 
         String newKeyUrl = parts[1].split("\"")[1];
+        String ivString = parts[2].split("0x")[1];
 
-        String ivString = parts[2].substring(5);
         iv = unpackHexString(ivString);
 
         try
