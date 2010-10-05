@@ -20,6 +20,8 @@ package net.chrislongo.hls;
 import java.io.*;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * User: chris
@@ -29,25 +31,25 @@ import java.net.URL;
 public class PlaylistDownloader
 {
     private URL url;
-    private String playlist;
+    private List<String> playlist;
     private Crypto crypto;
 
     private static String EXT_X_KEY = "#EXT-X-KEY";
+    private static final String BANDWIDTH = "BANDWIDTH";
 
     public PlaylistDownloader(String playlistUrl) throws MalformedURLException
     {
         this.url = new URL(playlistUrl);
-        this.crypto = new Crypto(getBaseUrl(this.url));
+        this.playlist = new ArrayList<String>();
     }
 
     public void download(String outfile) throws IOException
     {
         fetchPlaylist();
 
-        String line;
-        BufferedReader reader = new BufferedReader(new StringReader(playlist));
+        this.crypto = new Crypto(getBaseUrl(this.url));
 
-        while ((line = reader.readLine()) != null)
+        for (String line : playlist)
         {
             line = line.trim();
 
@@ -114,17 +116,66 @@ public class PlaylistDownloader
         BufferedReader reader = new BufferedReader(
             new InputStreamReader(url.openStream()));
 
-        StringBuilder sb = new StringBuilder();
+        boolean isMaster = false;
+
+        long maxRate = 0L;
+        int maxRateIndex = 0;
+
         String line;
+        int index = 0;
 
         while ((line = reader.readLine()) != null)
         {
-            sb.append(line);
-            sb.append("\n");
+            playlist.add(line);
+
+            if(line.contains(BANDWIDTH))
+                isMaster = true;
+
+            if(isMaster && line.contains(BANDWIDTH))
+            {
+                try
+                {
+                    int pos = line.lastIndexOf("=");
+                    long bandwidth = Long.parseLong(line.substring(++pos));
+
+                    maxRate = Math.max(bandwidth, maxRate);
+
+                    if(bandwidth == maxRate)
+                        maxRateIndex = index + 1;
+                }
+                catch (NumberFormatException ignore) {}
+            }
+
+            index++;
         }
 
         reader.close();
 
-        playlist = sb.toString();
+        if(isMaster)
+        {
+            System.out.printf("Found master playlist, fetching highest stream at %dKb/s\n",
+                    maxRate / 1024);
+
+            this.url = updateUrlForSubPlaylist(playlist.get(maxRateIndex));
+            this.playlist.clear();
+
+            fetchPlaylist();
+        }
+    }
+
+    private URL updateUrlForSubPlaylist(String sub) throws MalformedURLException
+    {
+        String newUrl;
+  
+        if (!sub.startsWith("http"))
+        {
+            newUrl = getBaseUrl(this.url) + sub;
+        }
+        else
+        {
+            newUrl = sub;
+        }
+
+        return new URL(newUrl);
     }
 }
