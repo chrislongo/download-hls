@@ -29,7 +29,6 @@ import java.math.BigInteger;
 import java.net.URL;
 import java.net.URLConnection;
 import java.security.Security;
-import java.security.spec.AlgorithmParameterSpec;
 
 /**
  * User: chris
@@ -39,12 +38,14 @@ import java.security.spec.AlgorithmParameterSpec;
 public class Crypto
 {
     private Cipher cipher;
+    private String baseUrl;
     private String keyUrl;
     private byte[] key;
     private byte[] iv;
 
-    public Crypto()
+    public Crypto(String baseUrl)
     {
+        this.baseUrl = baseUrl;
     }
 
     public CipherInputStream wrapInputStream(InputStream in)
@@ -72,15 +73,30 @@ public class Crypto
         String[] parts = keyString.split(",");
 
         String newKeyUrl = parts[1].split("\"")[1];
-        String ivString = parts[2].split("0x")[1];
 
-        iv = unpackHexString(ivString);
+        if(parts.length > 2)
+        {
+            String ivString = parts[2].split("0x")[1];
+            iv = unpackHexString(ivString);
+        }
+        else
+        {
+            iv = new byte[16];
+        }
 
         try
         {
             if (!newKeyUrl.equals(keyUrl))
             {
-                keyUrl = newKeyUrl;
+                if(newKeyUrl.startsWith("http"))
+                {
+                    keyUrl = newKeyUrl;
+                }
+                else
+                {
+                    keyUrl = baseUrl + newKeyUrl;                    
+                }
+
                 fetchKey();
             }
         }
@@ -116,13 +132,13 @@ public class Crypto
     private void initCipher() throws CryptoException
     {
         Security.addProvider(new org.bouncycastle.jce.provider.BouncyCastleProvider());
-        AlgorithmParameterSpec spec = new IvParameterSpec(iv);
 
         try
         {
             SecretKey secretKey = new SecretKeySpec(key, "AES");
+
             cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
-            cipher.init(Cipher.DECRYPT_MODE, secretKey, spec);
+            cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
         }
         catch (Exception e)
         {

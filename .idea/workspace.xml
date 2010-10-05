@@ -4,10 +4,10 @@
     <list default="true" readonly="true" id="8328fbd4-e3c2-4d74-a75e-74b673c4042f" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java" afterPath="$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" afterPath="$PROJECT_DIR$/.idea/projectCodeStyle.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java" afterPath="$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java" />
     </list>
-    <ignored path="DecryptHLS.iws" />
     <ignored path=".idea/workspace.xml" />
+    <ignored path="DecryptHLS.iws" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -64,11 +64,13 @@
   <component name="FileColors" enabled="true" enabledForTabs="true" />
   <component name="FileEditorManager">
     <leaf>
-      <file leaf-file-name="TestDownload.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/test/TestDownload.java">
+      <file leaf-file-name="Crypto.java" pinned="false" current="true" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="21" column="14" selection-start="787" selection-end="787" vertical-scroll-proportion="0.0">
-              <folding />
+            <state line="175" column="8" selection-start="4350" selection-end="4350" vertical-scroll-proportion="1.26125">
+              <folding>
+                <element signature="imports" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -76,34 +78,16 @@
       <file leaf-file-name="Main.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Main.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="54" column="0" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.0">
+            <state line="62" column="0" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="PlaylistDownloader.java" pinned="false" current="true" current-in-tab="true">
+      <file leaf-file-name="PlaylistDownloader.java" pinned="false" current="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state line="122" column="64" selection-start="3409" selection-end="3409" vertical-scroll-proportion="0.7625">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Crypto.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="157" column="0" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.0">
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="CryptoException.java" pinned="false" current="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/CryptoException.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state line="24" column="13" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0">
+            <state line="55" column="0" selection-start="1571" selection-end="1571" vertical-scroll-proportion="0.0">
               <folding />
             </state>
           </provider>
@@ -132,10 +116,10 @@
         <option value="$PROJECT_DIR$/src/CryptoException.java" />
         <option value="$PROJECT_DIR$/src/PlaylistDownloader.java" />
         <option value="$PROJECT_DIR$/test/TestParser.java" />
-        <option value="$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java" />
         <option value="$PROJECT_DIR$/test/TestDownload.java" />
-        <option value="$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java" />
         <option value="$PROJECT_DIR$/src/net/chrislongo/hls/Main.java" />
+        <option value="$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java" />
+        <option value="$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java" />
       </list>
     </option>
   </component>
@@ -182,9 +166,7 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="Favorites" />
       <pane id="PackagesPane" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -203,26 +185,10 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
-          <PATH>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DecryptHLS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="DecryptHLS" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="src" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-            <PATH_ELEMENT>
-              <option name="myItemId" value="hls" />
-              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
-            </PATH_ELEMENT>
-          </PATH>
         </subPane>
       </pane>
+      <pane id="Scope" />
+      <pane id="Favorites" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -239,16 +205,16 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="GenerateAntBuildDialog.forceTargetJdk" value="true" />
     <property name="GenerateAntBuildDialog.backupFiles" value="true" />
-    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
-    <property name="GoToClass.includeLibraries" value="false" />
     <property name="options.splitter.details.proportions" value="0.2" />
-    <property name="MemberChooser.showClasses" value="true" />
+    <property name="GoToClass.includeLibraries" value="false" />
+    <property name="GenerateAntBuildDialog.generateSingleFile" value="true" />
     <property name="dynamic.classpath" value="false" />
+    <property name="MemberChooser.showClasses" value="true" />
     <property name="project.structure.side.proportion" value="0.2" />
-    <property name="options.lastSelected" value="project.propVCSSupport.vcses" />
+    <property name="options.lastSelected" value="preferences.sourceCode" />
     <property name="GoToClass.toSaveIncludeLibraries" value="false" />
-    <property name="OverrideImplement.combined" value="true" />
     <property name="GenerateAntBuildDialog.generateIdeaHomeProperty" value="false" />
+    <property name="OverrideImplement.combined" value="true" />
   </component>
   <component name="RunManager" selected="Application.Main">
     <configuration default="true" type="Remote" factoryName="Remote">
@@ -281,7 +247,7 @@
         <option name="Maven.BeforeRunTask" enabled="false" />
       </method>
     </configuration>
-    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit">
+    <configuration default="true" type="FlexUnitRunConfigurationType" factoryName="FlexUnit" air_descriptor_path="" air_program_params="" air_publisher_id="" air_root_dir_path="" air_run_mode="AppDescriptor" class_name="" html_or_swf_file_path="" main_class_name="" method_name="" module_name="" output_log_level="" package_name="" port="0" run_mode="HtmlOrSwfFile" scope="Class" socket_policy_port="0" url_to_launch="http://">
       <method>
         <option name="AntTarget" enabled="false" />
         <option name="BuildArtifacts" enabled="false" />
@@ -338,7 +304,7 @@
       <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="emma" />
       <option name="MAIN_CLASS_NAME" value="net.chrislongo.hls.Main" />
       <option name="VM_PARAMETERS" value="" />
-      <option name="PROGRAM_PARAMETERS" value="http://localhost/~chris/video/ipad_1/prog_index.m3u8 $PROJECT_DIR$/../../../tmp/out.ts" />
+      <option name="PROGRAM_PARAMETERS" value="http://localhost/video/2538/x-5.m3u8 $PROJECT_DIR$/../../../tmp/video/sample.ts" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$" />
       <option name="ALTERNATIVE_JRE_PATH_ENABLED" value="false" />
       <option name="ALTERNATIVE_JRE_PATH" value="" />
@@ -422,22 +388,22 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="0" y="22" width="1280" height="923" extended-state="0" />
-    <editor active="true" />
+    <editor active="false" />
     <layout>
-      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.2745735" sideWeight="0.52231604" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293124" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32810616" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Dependency Viewer" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Palette" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.16476841" sideWeight="0.6608108" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45135134" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.21364744" sideWeight="0.66344994" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.47027028" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="1" side_tool="true" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32810616" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.45114595" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.46924004" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.3293124" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32972974" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -519,31 +485,31 @@
         <state line="21" column="14" selection-start="787" selection-end="787" vertical-scroll-proportion="0.0" />
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state line="157" column="0" selection-start="4012" selection-end="4012" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/CryptoException.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="24" column="13" selection-start="805" selection-end="805" vertical-scroll-proportion="0.0">
-          <folding />
-        </state>
+        <state line="24" column="13" selection-start="805" selection-end="805" vertical-scroll-proportion="0.335" />
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Main.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="54" column="0" selection-start="1468" selection-end="1468" vertical-scroll-proportion="0.0">
+        <state line="62" column="0" selection-start="1664" selection-end="1664" vertical-scroll-proportion="0.0">
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/PlaylistDownloader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state line="122" column="64" selection-start="3409" selection-end="3409" vertical-scroll-proportion="0.7625">
+        <state line="55" column="0" selection-start="1571" selection-end="1571" vertical-scroll-proportion="0.0">
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/net/chrislongo/hls/Crypto.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state line="175" column="8" selection-start="4350" selection-end="4350" vertical-scroll-proportion="1.26125">
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

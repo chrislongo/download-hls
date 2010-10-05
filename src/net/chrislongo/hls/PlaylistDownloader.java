@@ -37,7 +37,7 @@ public class PlaylistDownloader
     public PlaylistDownloader(String playlistUrl) throws MalformedURLException
     {
         this.url = new URL(playlistUrl);
-        this.crypto = new Crypto();
+        this.crypto = new Crypto(getBaseUrl(this.url));
     }
 
     public void download(String outfile) throws IOException
@@ -64,10 +64,7 @@ public class PlaylistDownloader
 
                 if (!line.startsWith("http"))
                 {
-                    String urlString = url.toString();
-                    int index = urlString.lastIndexOf('/');
-                    String baseUrl = urlString.substring(0, ++index);
-
+                    String baseUrl = getBaseUrl(this.url);
                     segmentUrl = new URL(baseUrl + line);
                 }
                 else
@@ -78,6 +75,13 @@ public class PlaylistDownloader
                 download(segmentUrl, outfile);
             }
         }
+    }
+
+    private String getBaseUrl(URL url)
+    {
+        String urlString = url.toString();
+        int index = urlString.lastIndexOf('/');
+        return  urlString.substring(0, ++index);
     }
 
     private void download(URL segmentUrl, String outFile) throws IOException
