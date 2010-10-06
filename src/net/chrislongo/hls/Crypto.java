@@ -45,7 +45,18 @@ public class Crypto
 
     public Crypto(String baseUrl)
     {
+        this(baseUrl, null, null);
+    }
+
+    public Crypto(String baseUrl, String key, String iv)
+    {
         this.baseUrl = baseUrl;
+
+        if(key != null)
+            this.key = unpackHexString(key);
+
+        if(iv != null)
+            this.iv = unpackHexString(iv);
     }
 
     public CipherInputStream wrapInputStream(InputStream in)
@@ -86,7 +97,7 @@ public class Crypto
 
         try
         {
-            if (!newKeyUrl.equals(keyUrl))
+            if(!newKeyUrl.equals(keyUrl))
             {
                 if(newKeyUrl.startsWith("http"))
                 {
@@ -94,13 +105,13 @@ public class Crypto
                 }
                 else
                 {
-                    keyUrl = baseUrl + newKeyUrl;                    
+                    keyUrl = baseUrl + newKeyUrl;
                 }
 
                 fetchKey();
             }
         }
-        catch (IOException e)
+        catch(IOException e)
         {
             throw new CryptoException(e);
         }
@@ -118,9 +129,9 @@ public class Crypto
         int read = 0;
         int offset = 0;
 
-        while (offset < 16)
+        while(offset < 16)
         {
-            if ((read = in.read(this.key, offset, key.length - offset)) == -1)
+            if((read = in.read(this.key, offset, key.length - offset)) == -1)
                 break;
 
             offset += read;
@@ -140,7 +151,7 @@ public class Crypto
             cipher = Cipher.getInstance("AES/CBC/PKCS7Padding", "BC");
             cipher.init(Cipher.DECRYPT_MODE, secretKey, new IvParameterSpec(iv));
         }
-        catch (Exception e)
+        catch(Exception e)
         {
             throw new CryptoException(e);
         }
@@ -153,7 +164,7 @@ public class Crypto
         BigInteger bigInt = new BigInteger(hexString, 16);
         BigInteger andValue = new BigInteger("ff", 16);
 
-        for (int i = 0, index = 15; i < 16; i++, index--)
+        for(int i = 0, index = 15; i < 16; i++, index--)
         {
             BigInteger shift = bigInt.shiftRight(i * 8);
             shift = shift.and(andValue);
@@ -167,9 +178,9 @@ public class Crypto
     {
         StringBuilder sb = new StringBuilder();
 
-        if (array != null)
+        if(array != null)
         {
-            for (byte b : array)
+            for(byte b : array)
                 sb.append(String.format("%02x", b));
         }
 

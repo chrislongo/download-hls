@@ -55,22 +55,17 @@ public class PlaylistDownloader
         this.silent = silent;
     }
 
-    public void download() throws IOException
-    {
-        download(null);
-    }
-
-    public void download(String outfile) throws IOException
+    public void download(String outfile, String key, String iv) throws IOException
     {
         fetchPlaylist();
 
-        this.crypto = new Crypto(getBaseUrl(this.url));
+        this.crypto = new Crypto(getBaseUrl(this.url), key, iv);
 
-        for (String line : playlist)
+        for(String line : playlist)
         {
             line = line.trim();
 
-            if (line.startsWith(EXT_X_KEY))
+            if(line.startsWith(EXT_X_KEY))
             {
                 crypto.updateKeyString(line);
 
@@ -80,11 +75,11 @@ public class PlaylistDownloader
                     System.out.printf("Current IV:  %s\n", crypto.getCurrentIV());
                 }
             }
-            else if (line.length() > 0 && !line.startsWith("#"))
+            else if(line.length() > 0 && !line.startsWith("#"))
             {
                 URL segmentUrl;
 
-                if (!line.startsWith("http"))
+                if(!line.startsWith("http"))
                 {
                     String baseUrl = getBaseUrl(this.url);
                     segmentUrl = new URL(baseUrl + line);
@@ -99,13 +94,6 @@ public class PlaylistDownloader
         }
     }
 
-    private String getBaseUrl(URL url)
-    {
-        String urlString = url.toString();
-        int index = urlString.lastIndexOf('/');
-        return  urlString.substring(0, ++index);
-    }
-
     private void downloadInternal(URL segmentUrl, String outFile) throws IOException
     {
         byte[] buffer = new byte[512];
@@ -113,7 +101,6 @@ public class PlaylistDownloader
         InputStream is = crypto.hasKey()
             ? crypto.wrapInputStream(segmentUrl.openStream())
             : segmentUrl.openStream();
-
 
         FileOutputStream out;
 
@@ -134,13 +121,20 @@ public class PlaylistDownloader
 
         int read;
 
-        while ((read = is.read(buffer)) >= 0)
+        while((read = is.read(buffer)) >= 0)
         {
             out.write(buffer, 0, read);
         }
 
         is.close();
         out.close();
+    }
+
+    private String getBaseUrl(URL url)
+    {
+        String urlString = url.toString();
+        int index = urlString.lastIndexOf('/');
+        return urlString.substring(0, ++index);
     }
 
     private void fetchPlaylist() throws IOException
@@ -156,7 +150,7 @@ public class PlaylistDownloader
         String line;
         int index = 0;
 
-        while ((line = reader.readLine()) != null)
+        while((line = reader.readLine()) != null)
         {
             playlist.add(line);
 
@@ -175,7 +169,9 @@ public class PlaylistDownloader
                     if(bandwidth == maxRate)
                         maxRateIndex = index + 1;
                 }
-                catch (NumberFormatException ignore) {}
+                catch(NumberFormatException ignore)
+                {
+                }
             }
 
             index++;
@@ -188,7 +184,7 @@ public class PlaylistDownloader
             if(!silent)
             {
                 System.out.printf("Found master playlist, fetching highest stream at %dKb/s\n",
-                        maxRate / 1024);
+                    maxRate / 1024);
             }
 
             this.url = updateUrlForSubPlaylist(playlist.get(maxRateIndex));
@@ -201,8 +197,8 @@ public class PlaylistDownloader
     private URL updateUrlForSubPlaylist(String sub) throws MalformedURLException
     {
         String newUrl;
-  
-        if (!sub.startsWith("http"))
+
+        if(!sub.startsWith("http"))
         {
             newUrl = getBaseUrl(this.url) + sub;
         }
