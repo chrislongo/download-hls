@@ -1,4 +1,4 @@
-Downloads HTTP Live Streaming transport streams.
+Downloads HTTP Live Streaming (HLS) transport streams.
 
 http://tools.ietf.org/html/draft-pantos-http-live-streaming-04
 
