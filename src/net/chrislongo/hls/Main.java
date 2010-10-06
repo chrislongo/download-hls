@@ -17,7 +17,9 @@
 
 package net.chrislongo.hls;
 
-import java.io.*;
+import org.apache.commons.cli.*;
+
+import java.io.File;
 
 /**
  * User: chris
@@ -26,37 +28,53 @@ import java.io.*;
  */
 public class Main
 {
+    private static final String ARG_IV = "iv";
+    private static final String ARG_KEY = "key";
+    private static final String OPT_HELP = "h";
+    private static final String OPT_IV = "iv";
+    private static final String OPT_KEY = "k";
+    private static final String OPT_SILENT = "s";
+    private static final String OPT_OUT_FILE = "o";
+    private static final String ARG_OUT_FILE = "output file";
+    private static final String OPT_OUT_FILE_LONG = "out-file";
+    private static final String SYNTAX = "download-hls [options...] <url> [outfile]";
+
     public static void main(String[] args)
     {
-        if (args.length < 2)
-        {
-            System.out.println("Args: playlistUrl outFile");
-            System.exit(1);
-        }
+        CommandLine commandLine = parseCommandLine(args);
+        String[] commandLineArgs = commandLine.getArgs();
 
         try
         {
-            String playlistUrl = args[0];
-            String outFile = args[1];
+            String playlistUrl = commandLineArgs[0];
 
-            File file = new File(outFile);
+            String outFile = null;
 
-            if (file.exists())
+            if(commandLine.hasOption(OPT_OUT_FILE))
             {
-                System.out.printf("File '%s' already exists. Overwrite? [y/N] ", outFile);
+                outFile = commandLine.getOptionValue(OPT_OUT_FILE);
 
-                int ch = System.in.read();
+                File file = new File(outFile);
 
-                if (!(ch == 'y' || ch == 'Y'))
+                if (file.exists())
                 {
-                    System.exit(0);
-                }
+                    System.out.printf("File '%s' already exists. Overwrite? [y/N] ", outFile);
 
-                file.delete();
+                    int ch = System.in.read();
+
+                    if (!(ch == 'y' || ch == 'Y'))
+                    {
+                        System.exit(0);
+                    }
+
+                    file.delete();
+                }
             }
 
             PlaylistDownloader downloader =
                 new PlaylistDownloader(playlistUrl);
+
+            downloader.setSilent(commandLine.hasOption(OPT_SILENT));
 
             downloader.download(outFile);
         }
@@ -65,5 +83,59 @@ public class Main
             e.printStackTrace();
             System.exit(1);
         }
+    }
+
+    private static CommandLine parseCommandLine(String[] args)
+    {
+        CommandLineParser parser = new PosixParser();
+        CommandLine commandLine = null;
+
+        Option help = new Option(OPT_HELP, "help", false, "print this message.");
+
+        Option silent = new Option(OPT_SILENT, false, "silent mode.");
+
+        Option key = OptionBuilder.withArgName(ARG_KEY)
+            .withLongOpt(ARG_KEY)
+            .hasArg()
+            .withDescription("use this static AES-128 key for the stream.")
+            .create(OPT_KEY);
+
+        Option iv = OptionBuilder.withArgName(ARG_IV)
+            .hasArg()
+            .withDescription("use this static AES-128 IV for the stream.")
+            .create(OPT_IV);
+
+        Option outFile = OptionBuilder.withArgName(ARG_OUT_FILE)
+            .withLongOpt(OPT_OUT_FILE_LONG)
+            .hasArg()
+            .withDescription("file to write to.")
+            .create(OPT_OUT_FILE);
+
+        Options options = new Options();
+
+        options.addOption(help);
+        options.addOption(silent);
+        options.addOption(key);
+        options.addOption(iv);
+        options.addOption(outFile);
+
+        try
+        {
+            commandLine = parser.parse(options, args);
+
+            if (commandLine.hasOption(OPT_HELP) || (commandLine.getArgs().length < 1))
+            {
+                new HelpFormatter().printHelp(SYNTAX, options);
+                System.exit(0);
+            }
+        }
+        catch (ParseException e)
+        {
+            System.out.println(e.getMessage());
+            new HelpFormatter().printHelp(SYNTAX, options);
+            System.exit(1);
+        }
+
+        return commandLine;
     }
 }

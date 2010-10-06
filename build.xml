@@ -48,12 +48,13 @@
             <fileset dir="${classes.dir}" />
             <manifest>
                 <attribute name="Main-Class" value="net.chrislongo.hls.Main" />
-                <attribute name="Class-Path" value="lib/bcprov-ext-jdk16-145.jar" />
+                <attribute name="Class-Path" value="lib/bcprov-ext-jdk16-145.jar lib/commons-cli-1.2.jar" />
             </manifest>
         </jar>
         <copy todir="${dist.dir}">
             <fileset dir="${basedir}">
                 <include name="${lib.dir}/bcprov-ext-jdk16-145.jar" />
+                <include name="${lib.dir}/commons-cli-1.2.jar" />
             </fileset>
         </copy>
     </target>

@@ -34,6 +34,8 @@ public class PlaylistDownloader
     private List<String> playlist;
     private Crypto crypto;
 
+    private boolean silent = false;
+
     private static String EXT_X_KEY = "#EXT-X-KEY";
     private static final String BANDWIDTH = "BANDWIDTH";
 
@@ -41,6 +43,21 @@ public class PlaylistDownloader
     {
         this.url = new URL(playlistUrl);
         this.playlist = new ArrayList<String>();
+    }
+
+    public boolean isSilent()
+    {
+        return silent;
+    }
+
+    public void setSilent(boolean silent)
+    {
+        this.silent = silent;
+    }
+
+    public void download() throws IOException
+    {
+        download(null);
     }
 
     public void download(String outfile) throws IOException
@@ -57,8 +74,11 @@ public class PlaylistDownloader
             {
                 crypto.updateKeyString(line);
 
-                System.out.printf("Current Key: %s\n", crypto.getCurrentKey());
-                System.out.printf("Current IV:  %s\n", crypto.getCurrentIV());
+                if(!silent)
+                {
+                    System.out.printf("Current Key: %s\n", crypto.getCurrentKey());
+                    System.out.printf("Current IV:  %s\n", crypto.getCurrentIV());
+                }
             }
             else if (line.length() > 0 && !line.startsWith("#"))
             {
@@ -74,7 +94,7 @@ public class PlaylistDownloader
                     segmentUrl = new URL(line);
                 }
 
-                download(segmentUrl, outfile);
+                downloadInternal(segmentUrl, outfile);
             }
         }
     }
@@ -86,7 +106,7 @@ public class PlaylistDownloader
         return  urlString.substring(0, ++index);
     }
 
-    private void download(URL segmentUrl, String outFile) throws IOException
+    private void downloadInternal(URL segmentUrl, String outFile) throws IOException
     {
         byte[] buffer = new byte[512];
 
@@ -94,11 +114,23 @@ public class PlaylistDownloader
             ? crypto.wrapInputStream(segmentUrl.openStream())
             : segmentUrl.openStream();
 
-        File file = new File(outFile);
 
-        FileOutputStream out = new FileOutputStream(outFile, file.exists());
+        FileOutputStream out;
 
-        System.out.printf("Downloading segment: %s\n", segmentUrl);
+        if(outFile != null)
+        {
+            File file = new File(outFile);
+            out = new FileOutputStream(outFile, file.exists());
+        }
+        else
+        {
+            String path = segmentUrl.getPath();
+            int pos = path.lastIndexOf('/');
+            out = new FileOutputStream(path.substring(++pos));
+        }
+
+        if(!silent)
+            System.out.printf("Downloading segment: %s\n", segmentUrl);
 
         int read;
 
@@ -153,8 +185,11 @@ public class PlaylistDownloader
 
         if(isMaster)
         {
-            System.out.printf("Found master playlist, fetching highest stream at %dKb/s\n",
-                    maxRate / 1024);
+            if(!silent)
+            {
+                System.out.printf("Found master playlist, fetching highest stream at %dKb/s\n",
+                        maxRate / 1024);
+            }
 
             this.url = updateUrlForSubPlaylist(playlist.get(maxRateIndex));
             this.playlist.clear();
