@@ -105,7 +105,7 @@ public class Main
         Option outFile = OptionBuilder.withArgName(ARG_OUT_FILE)
             .withLongOpt(OPT_OUT_FILE_LONG)
             .hasArg()
-            .withDescription("join transport streams to the supplied file.")
+            .withDescription("join all transport streams to one file.")
             .create(OPT_OUT_FILE);
 
         Options options = new Options();
