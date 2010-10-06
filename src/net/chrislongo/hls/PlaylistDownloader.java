@@ -55,6 +55,11 @@ public class PlaylistDownloader
         this.silent = silent;
     }
 
+    public void download(String outfile) throws IOException
+    {
+        this.download(outfile, null);
+    }
+
     public void download(String outfile, String key) throws IOException
     {
         fetchPlaylist();
