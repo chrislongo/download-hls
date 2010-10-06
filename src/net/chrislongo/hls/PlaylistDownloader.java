@@ -55,11 +55,11 @@ public class PlaylistDownloader
         this.silent = silent;
     }
 
-    public void download(String outfile, String key, String iv) throws IOException
+    public void download(String outfile, String key) throws IOException
     {
         fetchPlaylist();
 
-        this.crypto = new Crypto(getBaseUrl(this.url), key, iv);
+        this.crypto = new Crypto(getBaseUrl(this.url), key);
 
         for(String line : playlist)
         {
@@ -71,7 +71,7 @@ public class PlaylistDownloader
 
                 if(!silent)
                 {
-                    System.out.printf("Current Key: %s\n", crypto.getCurrentKey());
+                    System.out.printf("\rCurrent Key: %s                                  \n", crypto.getCurrentKey());
                     System.out.printf("Current IV:  %s\n", crypto.getCurrentIV());
                 }
             }
@@ -92,6 +92,9 @@ public class PlaylistDownloader
                 downloadInternal(segmentUrl, outfile);
             }
         }
+
+        if(!silent)
+            System.out.println("\nDone.");
     }
 
     private void downloadInternal(URL segmentUrl, String outFile) throws IOException
@@ -117,7 +120,7 @@ public class PlaylistDownloader
         }
 
         if(!silent)
-            System.out.printf("Downloading segment: %s\n", segmentUrl);
+            System.out.printf("Downloading segment: %s\r", segmentUrl);
 
         int read;
 

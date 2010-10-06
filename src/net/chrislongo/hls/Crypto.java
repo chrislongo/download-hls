@@ -43,20 +43,22 @@ public class Crypto
     private byte[] key;
     private byte[] iv;
 
+    boolean forceKey = false;
+
     public Crypto(String baseUrl)
     {
-        this(baseUrl, null, null);
+        this(baseUrl, null);
     }
 
-    public Crypto(String baseUrl, String key, String iv)
+    public Crypto(String baseUrl, String key)
     {
         this.baseUrl = baseUrl;
 
         if(key != null)
+        {
             this.key = unpackHexString(key);
-
-        if(iv != null)
-            this.iv = unpackHexString(iv);
+            forceKey = true;
+        }
     }
 
     public CipherInputStream wrapInputStream(InputStream in)
@@ -97,7 +99,7 @@ public class Crypto
 
         try
         {
-            if(!newKeyUrl.equals(keyUrl))
+            if(!forceKey && !newKeyUrl.equals(keyUrl))
             {
                 if(newKeyUrl.startsWith("http"))
                 {

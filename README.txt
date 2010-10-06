@@ -2,11 +2,10 @@ Downloads HTTP Live Streaming transport streams.
 
 http://tools.ietf.org/html/draft-pantos-http-live-streaming-04
 
-Supports encrypted and clear streams.
+Supports encrypted and plain streams.
 
 usage: download-hls [options...] <url>
- -h,--help                     print this message.
- -iv <iv>                      use this AES-128 IV for the stream.
- -k,--key <key>                use this AES-128 key for the stream.
- -o,--out-file <output file>   file to write joined transport streams to.
- -s                            silent mode.
+ -h,--help              print this message.
+ -k,--force-key <key>   force use of the supplied AES-128 key.
+ -o,--outfile <file>    join transport streams to the supplied file.
+ -s,--silent            silent mode.

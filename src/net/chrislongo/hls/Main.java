@@ -28,15 +28,14 @@ import java.io.File;
  */
 public class Main
 {
-    private static final String ARG_IV = "iv";
     private static final String ARG_KEY = "key";
-    private static final String ARG_OUT_FILE = "output file";
+    private static final String ARG_OUT_FILE = "file";
     private static final String CLI_SYNTAX = "download-hls [options...] <url>";
     private static final String OPT_HELP = "h";
-    private static final String OPT_IV = "iv";
     private static final String OPT_KEY = "k";
+    private static final String OPT_KEY_LONG = "force-key";
     private static final String OPT_OUT_FILE = "o";
-    private static final String OPT_OUT_FILE_LONG = "out-file";
+    private static final String OPT_OUT_FILE_LONG = "outfile";
     private static final String OPT_SILENT = "s";
 
     public static void main(String[] args)
@@ -49,7 +48,6 @@ public class Main
             String playlistUrl = commandLineArgs[0];
             String outFile = null;
             String key = null;
-            String iv = null;
 
             if(commandLine.hasOption(OPT_OUT_FILE))
             {
@@ -75,15 +73,12 @@ public class Main
             if(commandLine.hasOption(OPT_KEY))
                 key = commandLine.getOptionValue(OPT_KEY);
 
-            if(commandLine.hasOption(OPT_IV))
-                iv = commandLine.getOptionValue(OPT_IV);
-
             PlaylistDownloader downloader =
                 new PlaylistDownloader(playlistUrl);
 
             downloader.setSilent(commandLine.hasOption(OPT_SILENT));
 
-            downloader.download(outFile, key, iv);
+            downloader.download(outFile, key);
         }
         catch(Exception e)
         {
@@ -99,23 +94,18 @@ public class Main
 
         Option help = new Option(OPT_HELP, "help", false, "print this message.");
 
-        Option silent = new Option(OPT_SILENT, false, "silent mode.");
+        Option silent = new Option(OPT_SILENT, "silent", false, "silent mode.");
 
         Option key = OptionBuilder.withArgName(ARG_KEY)
-            .withLongOpt(ARG_KEY)
+            .withLongOpt(OPT_KEY_LONG)
             .hasArg()
-            .withDescription("use this AES-128 key for the stream.")
+            .withDescription("force use of the supplied AES-128 key.")
             .create(OPT_KEY);
-
-        Option iv = OptionBuilder.withArgName(ARG_IV)
-            .hasArg()
-            .withDescription("use this AES-128 IV for the stream.")
-            .create(OPT_IV);
 
         Option outFile = OptionBuilder.withArgName(ARG_OUT_FILE)
             .withLongOpt(OPT_OUT_FILE_LONG)
             .hasArg()
-            .withDescription("file to write joined transport streams to.")
+            .withDescription("join transport streams to the supplied file.")
             .create(OPT_OUT_FILE);
 
         Options options = new Options();
@@ -123,7 +113,6 @@ public class Main
         options.addOption(help);
         options.addOption(silent);
         options.addOption(key);
-        options.addOption(iv);
         options.addOption(outFile);
 
         try
@@ -140,20 +129,9 @@ public class Main
             {
                 String optKey = commandLine.getOptionValue(OPT_KEY);
 
-                if(!optKey.matches("[0-9a-fA-F]{16}"))
+                if(!optKey.matches("[0-9a-fA-F]{32}"))
                 {
-                    System.out.printf("Bad key format: \"%s\"\n", optKey);
-                    System.exit(1);
-                }
-            }
-
-            if(commandLine.hasOption(OPT_IV))
-            {
-                String optIV = commandLine.getOptionValue(OPT_IV);
-
-                if(!optIV.matches("[0-9a-fA-F]{16}"))
-                {
-                    System.out.printf("Bad IV format: \"%s\"\n", optIV);
+                    System.out.printf("Bad key format: \"%s\". Expected 32-character hex format.\n", optKey);
                     System.exit(1);
                 }
             }
@@ -168,3 +146,4 @@ public class Main
         return commandLine;
     }
 }
+
