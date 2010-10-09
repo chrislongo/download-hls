@@ -20,6 +20,8 @@ package net.chrislongo.hls;
 import org.apache.commons.cli.*;
 
 import java.io.File;
+import java.io.OutputStream;
+import java.io.PrintStream;
 
 /**
  * User: chris
@@ -35,8 +37,9 @@ public class Main
     private static final String OPT_KEY = "k";
     private static final String OPT_KEY_LONG = "force-key";
     private static final String OPT_OUT_FILE = "o";
-    private static final String OPT_OUT_FILE_LONG = "outfile";
+    private static final String OPT_OUT_FILE_LONG = "output";
     private static final String OPT_SILENT = "s";
+    private static final String OPT_OVERWRITE = "y";
 
     public static void main(String[] args)
     {
@@ -57,13 +60,16 @@ public class Main
 
                 if(file.exists())
                 {
-                    System.out.printf("File '%s' already exists. Overwrite? [y/N] ", outFile);
-
-                    int ch = System.in.read();
-
-                    if(!(ch == 'y' || ch == 'Y'))
+                    if(!commandLine.hasOption(OPT_OVERWRITE))
                     {
-                        System.exit(0);
+                        System.out.printf("File '%s' already exists. Overwrite? [y/N] ", outFile);
+
+                        int ch = System.in.read();
+
+                        if(!(ch == 'y' || ch == 'Y'))
+                        {
+                            System.exit(0);
+                        }
                     }
 
                     file.delete();
@@ -76,7 +82,17 @@ public class Main
             PlaylistDownloader downloader =
                 new PlaylistDownloader(playlistUrl);
 
-            downloader.setSilent(commandLine.hasOption(OPT_SILENT));
+            if(commandLine.hasOption(OPT_SILENT))
+            {
+                System.setOut(new PrintStream(new OutputStream()
+                {
+                    public void close() {}
+                    public void flush() {}
+                    public void write(byte[] b) {}
+                    public void write(byte[] b, int off, int len) {}
+                    public void write(int b) {}
+                }));
+            }
 
             downloader.download(outFile, key);
         }
@@ -93,8 +109,8 @@ public class Main
         CommandLine commandLine = null;
 
         Option help = new Option(OPT_HELP, "help", false, "print this message.");
-
         Option silent = new Option(OPT_SILENT, "silent", false, "silent mode.");
+        Option overwrite = new Option(OPT_OVERWRITE, false, "overwrite output files.");
 
         Option key = OptionBuilder.withArgName(ARG_KEY)
             .withLongOpt(OPT_KEY_LONG)
@@ -112,6 +128,7 @@ public class Main
 
         options.addOption(help);
         options.addOption(silent);
+        options.addOption(overwrite);
         options.addOption(key);
         options.addOption(outFile);
 
