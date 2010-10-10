@@ -56,6 +56,7 @@
             <fileset dir="${basedir}">
                 <include name="${lib.dir}/bcprov-ext-jdk16-145.jar" />
                 <include name="${lib.dir}/commons-cli-1.2.jar" />
+                <include name="*.txt" />
             </fileset>
         </copy>
         <copy file="${scripts.dir}/download-hls.sh" tofile="${dist.dir}/download-hls" />
