@@ -11,3 +11,8 @@ usage: download-hls [options...] <url>
  -s,--silent            silent mode.
  -y                     overwrite output files.
 
+Issues
+
+- Next to no error correction.
+- If "-o" is not specified, individual segments will be overwritten.
+- Has not been tested on all playlists.
