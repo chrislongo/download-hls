@@ -22,7 +22,7 @@
     <property name="lib.dir" value="lib" />
     <property name="out.dir" value="out" />
     <property name="classes.dir" value="${out.dir}/classes" />
-    <property name="dist.dir" value="${out.dir}/dist" />
+    <property name="dist.dir" value="dist" />
     <property name="jar.name" value="download-hls.jar" />
 
     <path id="lib.classpath">
@@ -34,7 +34,6 @@
     <target name="init">
         <tstamp />
         <mkdir dir="${classes.dir}" />
-        <mkdir dir="${dist.dir}" />
     </target>
 
     <target name="compile" depends="init" description="Compiles the project.">
@@ -44,6 +43,7 @@
     </target>
 
     <target name="distribute" depends="compile" description="Creates distribution.">
+        <mkdir dir="${dist.dir}" />
         <jar destfile="${dist.dir}/${jar.name}">
             <fileset dir="${classes.dir}" />
             <manifest>
@@ -61,5 +61,6 @@
 
     <target name="clean" description="Cleans the intermediate files.">
         <delete dir="${out.dir}" />
+        <delete dir="${dist.dir}" />
     </target>
 </project>
