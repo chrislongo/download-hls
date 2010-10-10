@@ -13,6 +13,6 @@ usage: download-hls [options...] <url>
 
 Issues
 
-- Next to no error correction.
+- Next to no error handling.
 - If "-o" is not specified, individual segments will be overwritten.
 - Has not been tested on all playlists.
