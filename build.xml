@@ -23,6 +23,7 @@
     <property name="out.dir" value="out" />
     <property name="classes.dir" value="${out.dir}/classes" />
     <property name="dist.dir" value="dist" />
+    <property name="scripts.dir" value="scripts" />
     <property name="jar.name" value="download-hls.jar" />
 
     <path id="lib.classpath">
@@ -57,6 +58,8 @@
                 <include name="${lib.dir}/commons-cli-1.2.jar" />
             </fileset>
         </copy>
+        <copy file="${scripts.dir}/download-hls.sh" tofile="${dist.dir}/download-hls" />
+        <chmod file="${dist.dir}/download-hls" perm="755" />
     </target>
 
     <target name="clean" description="Cleans the intermediate files.">
