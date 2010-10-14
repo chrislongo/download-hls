@@ -14,5 +14,5 @@ usage: download-hls [options...] <url>
 Issues
 
 - Next to no error handling.
-- If "-o" is not specified, individual segments will be overwritten.
+- Individual segments will be overwritten irregardless of "-o".
 - Has not been tested on all playlists.
