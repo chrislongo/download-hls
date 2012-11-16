@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010 Christopher A Longo
+ * Copyright (c) Christopher A Longo
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -22,25 +22,20 @@ package net.chrislongo.hls;
  * Date: Oct 2, 2010
  * Time: 3:47:41 PM
  */
-public class CryptoException extends RuntimeException
-{
-    public CryptoException()
-    {
+public class CryptoException extends RuntimeException {
+    public CryptoException() {
         super();
     }
 
-    public CryptoException(String message)
-    {
+    public CryptoException(String message) {
         super(message);
     }
 
-    public CryptoException(String message, Throwable cause)
-    {
+    public CryptoException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public CryptoException(Throwable cause)
-    {
-        super(cause);   
+    public CryptoException(Throwable cause) {
+        super(cause);
     }
 }

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2010 Christopher A Longo
+ * Copyright (c) Christopher A Longo
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -28,8 +28,7 @@ import java.io.PrintStream;
  * Date: Oct 1, 2010
  * Time: 12:22:32 PM
  */
-public class Main
-{
+public class Main {
     private static final String ARG_KEY = "key";
     private static final String ARG_OUT_FILE = "file";
     private static final String CLI_SYNTAX = "download-hls [options...] <url>";
@@ -41,33 +40,27 @@ public class Main
     private static final String OPT_SILENT = "s";
     private static final String OPT_OVERWRITE = "y";
 
-    public static void main(String[] args)
-    {
+    public static void main(String[] args) {
         CommandLine commandLine = parseCommandLine(args);
         String[] commandLineArgs = commandLine.getArgs();
 
-        try
-        {
+        try {
             String playlistUrl = commandLineArgs[0];
             String outFile = null;
             String key = null;
 
-            if(commandLine.hasOption(OPT_OUT_FILE))
-            {
+            if (commandLine.hasOption(OPT_OUT_FILE)) {
                 outFile = commandLine.getOptionValue(OPT_OUT_FILE);
 
                 File file = new File(outFile);
 
-                if(file.exists())
-                {
-                    if(!commandLine.hasOption(OPT_OVERWRITE))
-                    {
+                if (file.exists()) {
+                    if (!commandLine.hasOption(OPT_OVERWRITE)) {
                         System.out.printf("File '%s' already exists. Overwrite? [y/N] ", outFile);
 
                         int ch = System.in.read();
 
-                        if(!(ch == 'y' || ch == 'Y'))
-                        {
+                        if (!(ch == 'y' || ch == 'Y')) {
                             System.exit(0);
                         }
                     }
@@ -76,35 +69,39 @@ public class Main
                 }
             }
 
-            if(commandLine.hasOption(OPT_KEY))
+            if (commandLine.hasOption(OPT_KEY))
                 key = commandLine.getOptionValue(OPT_KEY);
 
             PlaylistDownloader downloader =
-                new PlaylistDownloader(playlistUrl);
+                    new PlaylistDownloader(playlistUrl);
 
-            if(commandLine.hasOption(OPT_SILENT))
-            {
-                System.setOut(new PrintStream(new OutputStream()
-                {
-                    public void close() {}
-                    public void flush() {}
-                    public void write(byte[] b) {}
-                    public void write(byte[] b, int off, int len) {}
-                    public void write(int b) {}
+            if (commandLine.hasOption(OPT_SILENT)) {
+                System.setOut(new PrintStream(new OutputStream() {
+                    public void close() {
+                    }
+
+                    public void flush() {
+                    }
+
+                    public void write(byte[] b) {
+                    }
+
+                    public void write(byte[] b, int off, int len) {
+                    }
+
+                    public void write(int b) {
+                    }
                 }));
             }
 
             downloader.download(outFile, key);
-        }
-        catch(Exception e)
-        {
+        } catch (Exception e) {
             e.printStackTrace();
             System.exit(1);
         }
     }
 
-    private static CommandLine parseCommandLine(String[] args)
-    {
+    private static CommandLine parseCommandLine(String[] args) {
         CommandLineParser parser = new PosixParser();
         CommandLine commandLine = null;
 
@@ -113,16 +110,16 @@ public class Main
         Option overwrite = new Option(OPT_OVERWRITE, false, "overwrite output files.");
 
         Option key = OptionBuilder.withArgName(ARG_KEY)
-            .withLongOpt(OPT_KEY_LONG)
-            .hasArg()
-            .withDescription("force use of the supplied AES-128 key.")
-            .create(OPT_KEY);
+                .withLongOpt(OPT_KEY_LONG)
+                .hasArg()
+                .withDescription("force use of the supplied AES-128 key.")
+                .create(OPT_KEY);
 
         Option outFile = OptionBuilder.withArgName(ARG_OUT_FILE)
-            .withLongOpt(OPT_OUT_FILE_LONG)
-            .hasArg()
-            .withDescription("join all transport streams to one file.")
-            .create(OPT_OUT_FILE);
+                .withLongOpt(OPT_OUT_FILE_LONG)
+                .hasArg()
+                .withDescription("join all transport streams to one file.")
+                .create(OPT_OUT_FILE);
 
         Options options = new Options();
 
@@ -132,29 +129,23 @@ public class Main
         options.addOption(key);
         options.addOption(outFile);
 
-        try
-        {
+        try {
             commandLine = parser.parse(options, args);
 
-            if(commandLine.hasOption(OPT_HELP) || (commandLine.getArgs().length < 1))
-            {
+            if (commandLine.hasOption(OPT_HELP) || (commandLine.getArgs().length < 1)) {
                 new HelpFormatter().printHelp(CLI_SYNTAX, options);
                 System.exit(0);
             }
 
-            if(commandLine.hasOption(OPT_KEY))
-            {
+            if (commandLine.hasOption(OPT_KEY)) {
                 String optKey = commandLine.getOptionValue(OPT_KEY);
 
-                if(!optKey.matches("[0-9a-fA-F]{32}"))
-                {
+                if (!optKey.matches("[0-9a-fA-F]{32}")) {
                     System.out.printf("Bad key format: \"%s\". Expected 32-character hex format.\n", optKey);
                     System.exit(1);
                 }
             }
-        }
-        catch(ParseException e)
-        {
+        } catch (ParseException e) {
             System.out.println(e.getMessage());
             new HelpFormatter().printHelp(CLI_SYNTAX, options);
             System.exit(1);
