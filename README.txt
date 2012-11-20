@@ -1,4 +1,4 @@
-Downloads HTTP Live Streaming (HLS) transport streams.
+Downloads, decrypts, and optionally joins HTTP Live Streaming (HLS) transport streams.
 
 http://tools.ietf.org/html/draft-pantos-http-live-streaming
 
