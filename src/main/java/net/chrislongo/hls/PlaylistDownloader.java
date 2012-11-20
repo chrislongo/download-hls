@@ -23,11 +23,6 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * User: chris
- * Date: Oct 2, 2010
- * Time: 1:56:10 PM
- */
 public class PlaylistDownloader {
     private URL url;
     private List<String> playlist;

@@ -17,11 +17,6 @@
 
 package net.chrislongo.hls;
 
-/**
- * User: chris
- * Date: Oct 2, 2010
- * Time: 3:47:41 PM
- */
 public class CryptoException extends RuntimeException {
     public CryptoException() {
         super();

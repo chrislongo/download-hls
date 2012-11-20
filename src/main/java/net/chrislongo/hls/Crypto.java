@@ -30,11 +30,6 @@ import java.net.URL;
 import java.net.URLConnection;
 import java.security.Security;
 
-/**
- * User: chris
- * Date: Oct 2, 2010
- * Time: 2:17:58 PM
- */
 public class Crypto {
     private Cipher cipher;
     private String baseUrl;

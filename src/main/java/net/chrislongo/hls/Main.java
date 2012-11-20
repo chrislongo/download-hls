@@ -23,11 +23,6 @@ import java.io.File;
 import java.io.OutputStream;
 import java.io.PrintStream;
 
-/**
- * User: chris
- * Date: Oct 1, 2010
- * Time: 12:22:32 PM
- */
 public class Main {
     private static final String ARG_KEY = "key";
     private static final String ARG_OUT_FILE = "file";
@@ -77,20 +72,11 @@ public class Main {
 
             if (commandLine.hasOption(OPT_SILENT)) {
                 System.setOut(new PrintStream(new OutputStream() {
-                    public void close() {
-                    }
-
-                    public void flush() {
-                    }
-
-                    public void write(byte[] b) {
-                    }
-
-                    public void write(byte[] b, int off, int len) {
-                    }
-
-                    public void write(int b) {
-                    }
+                    public void close() {}
+                    public void flush() {}
+                    public void write(byte[] b) {}
+                    public void write(byte[] b, int off, int len) {}
+                    public void write(int b) {}
                 }));
             }
 
@@ -141,7 +127,7 @@ public class Main {
                 String optKey = commandLine.getOptionValue(OPT_KEY);
 
                 if (!optKey.matches("[0-9a-fA-F]{32}")) {
-                    System.out.printf("Bad key format: \"%s\". Expected 32-character hex format.\n", optKey);
+                    System.out.printf("Bad key format: \"%s\". Expected 32-character hex format.\nExample: -key 12ba7f70db4740dec4aab4c5c2c768d9", optKey);
                     System.exit(1);
                 }
             }
