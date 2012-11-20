@@ -107,11 +107,8 @@ public class PlaylistDownloader {
     }
 
     private void fetchPlaylist() throws IOException {
-        BufferedReader reader = new BufferedReader(
-                new InputStreamReader(url.openStream()));
-
+        BufferedReader reader = new BufferedReader(new InputStreamReader(url.openStream()));
         boolean isMaster = false;
-
         long maxRate = 0L;
         int maxRateIndex = 0;
 
@@ -133,8 +130,7 @@ public class PlaylistDownloader {
 
                     if (bandwidth == maxRate)
                         maxRateIndex = index + 1;
-                } catch (NumberFormatException ignore) {
-                }
+                } catch (NumberFormatException ignore) {}
             }
 
             index++;
@@ -143,9 +139,7 @@ public class PlaylistDownloader {
         reader.close();
 
         if (isMaster) {
-            System.out.printf("Found master playlist, fetching highest stream at %dKb/s\n",
-                    maxRate / 1024);
-
+            System.out.printf("Found master playlist, fetching highest stream at %dKb/s\n", maxRate / 1024);
             this.url = updateUrlForSubPlaylist(playlist.get(maxRateIndex));
             this.playlist.clear();
 
