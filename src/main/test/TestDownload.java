@@ -18,14 +18,16 @@
 import net.chrislongo.hls.PlaylistDownloader;
 import org.junit.Test;
 
-public class TestDownload
-{
-    @Test
-    public void download() throws Exception
-    {
-        PlaylistDownloader downloader =
-            new PlaylistDownloader("http://devimages.apple.com/iphone/samples/bipbop/gear4/prog_index.m3u8");
+import java.io.File;
 
+public class TestDownload {
+    @Test
+    public void download() throws Exception {
+        File outDir = new File("out");
+        if(!outDir.exists())
+            outDir.mkdir();
+
+        PlaylistDownloader downloader = new PlaylistDownloader("file:./data/prog_index.m3u8");
         downloader.download("out/out.ts");
     }
 }
